@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Albums{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Albums</h1>
+<hr>
+
+<div class="row pt-2">
+{% for leAlbum in lesAlbums %}
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div class="card mb-3">
+            <h3 class="card-header">{{leAlbum.nom}}</h3>
+            <div class="card-body">
+                <h5 class="card-title">
+                <a href="" class="badge badge-success">{{leArtiste.nom}}</a>
+                </h5>
+            </div>
+            <img class="avatar mx-auto d-block " style="height: auto; width : 200px; display: block;" src="{{leAlbum.image}}" alt"Card image">
+            <div class="card-body">
+                <p class="card-text">{{leAlbum.description|slice(0,200)|raw}}...</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"> {{}} morceaux </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
