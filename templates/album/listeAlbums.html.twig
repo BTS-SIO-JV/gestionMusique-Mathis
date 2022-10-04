@@ -10,23 +10,27 @@
 {% for leAlbum in lesAlbums %}
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
         <div class="card mb-3">
-            <h3 class="card-header">{{leAlbum.nom}}</h3>
+            <h3 class="card-header">
+                <a href="{{path('ficheAlbum', {'id': leAlbum.id})}}">{{leAlbum.nom}}</a>
+            </h3>
             <div class="card-body">
                 <h5 class="card-title">
-                <a href="" class="badge badge-success">{{leAlbum.artiste.nom}}</a>
+                <a href="{{path('ficheArtiste', {'id': leAlbum.artiste.id})}}" class="card-text">{{leAlbum.artiste.nom}}</a>
                 </h5>
             </div>
-            <img class="avatar mx-auto d-block " style="height: auto; width : 200px; display: block;" src="{{leAlbum.image}}" alt"Card image">
+            <img class="mx-auto d-block " style="height: auto; width : 200px; display: block;" src="{{leAlbum.image}}" alt"Card image">
             <div class="card-body">
-            {% for leStyle in leAlbum.styles %}
-                <p class="card-text">{{leStyle.nom}}</p>
-            {% endfor %}
-            <div class="card-body">
-                 <p class="card-text">{{leAlbum.morceaux|length}}</p>
+                <h5 class="card-title">
+                    <p class="card-text">{{leAlbum.date}}</p>
+                </h5>
             </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"> 
+                        <a href="" class="badge badge-success">{% for leStyle in leAlbum.styles %}{{leStyle.nom}}{% endfor %}</a>
+                </li>
+                <li class="list-group-item"> <p href="">{{leAlbum.morceaux|length}} morceaux</p></li>
+            </ul>
 
-            </div>
-            
         </div>
     </div>
 {% endfor %}

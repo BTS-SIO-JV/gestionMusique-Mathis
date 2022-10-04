@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Album;
 use App\Repository\AlbumRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AlbumController extends AbstractController
 {
@@ -17,6 +18,16 @@ class AlbumController extends AbstractController
         $albums=$repo->findAll();
         return $this->render('album/listeAlbums.html.twig',[
             'lesAlbums' => $albums
+        ]);
+    }
+
+    /**
+     * @Route("/album/{id}", name="ficheAlbum", methods={"GET"})
+     */
+    public function ficheArtiste(Album $album): Response
+    {
+        return $this->render('artiste/ficheAlbum.html.twig',[
+            'leAlbum' => $album
         ]);
     }
 
