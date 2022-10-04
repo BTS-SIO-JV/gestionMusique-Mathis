@@ -13,17 +13,23 @@
             <h3 class="card-header">{{leAlbum.nom}}</h3>
             <div class="card-body">
                 <h5 class="card-title">
-                <a href="" class="badge badge-success">{{leArtiste.nom}}</a>
+                <a href="" class="badge badge-success">{{leAlbum.artiste.nom}}</a>
                 </h5>
             </div>
             <img class="avatar mx-auto d-block " style="height: auto; width : 200px; display: block;" src="{{leAlbum.image}}" alt"Card image">
             <div class="card-body">
-                <p class="card-text">{{leAlbum.description|slice(0,200)|raw}}...</p>
+            {% for leStyle in leAlbum.styles %}
+                <p class="card-text">{{leStyle.nom}}</p>
+            {% endfor %}
+            <div class="card-body">
+                 <p class="card-text">{{leAlbum.morceaux|length}}</p>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"> {{}} morceaux </li>
-            </ul>
+
+            </div>
+            
         </div>
     </div>
+{% endfor %}
 </div>
+
 {% endblock %}
