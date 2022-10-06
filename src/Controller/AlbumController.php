@@ -26,7 +26,7 @@ class AlbumController extends AbstractController
      */
     public function ficheArtiste(Album $album): Response
     {
-        return $this->render('artiste/ficheAlbum.html.twig',[
+        return $this->render('album/ficheAlbum.html.twig',[
             'leAlbum' => $album
         ]);
     }

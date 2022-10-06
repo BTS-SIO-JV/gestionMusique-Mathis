@@ -7,33 +7,65 @@
 <hr>
 
 <div class="row pt-2">
-{% for leAlbum in lesAlbums %}
-        <div class="card mb-3">
-            <h3 class="card-header">{{leAlbum.nom}}</h3>
+        <div class="card col">
+            <h3 class="card-header"> {{leAlbum.nom}} </h3>
             <div class="row">
                 <div class="col-3 d-flex align-items-center mx-auto">
+                    <img class="mx-auto d-block " style="height: auto; width : 200px; display: block;" src="{{leAlbum.image}}" alt="Card image">
+                </div>
+                <div class="col-9">
                     <div class="card-body">
                         <h5 class="card-title">
-                        <a href="{{path('ficheArtiste', {'id': leAlbum.artiste.id})}}" class="card-text">{{leAlbum.artiste.nom}}</a>
+                            <a href="{{path('ficheArtiste', {'id': leAlbum.artiste.id})}}" class="card-text">{{leAlbum.artiste.nom}}</a>
                         </h5>
                     </div>
-                    <img class="mx-auto d-block " style="height: auto; width : 200px; display: block;" src="{{leAlbum.image}}" alt"Card image">
-                    <div class="col">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <p class="card-text">{{leAlbum.date}}</p>
+                        </h5>
+                    </div>
                         <div class="card-body">
                             <h5 class="card-title">
-                                <p class="card-text">{{leAlbum.date}}</p>
+                            <a href="" class="badge badge-success">{% for leStyle in leAlbum.styles %}{{leStyle.nom}}{% endfor %}</a>
                             </h5>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"> 
-                                <a href="" class="badge badge-success">{% for leStyle in leAlbum.styles %}{{leStyle.nom}}{% endfor %}</a>
-                            </li>
+                        <div class="card-body">
                             <li class="list-group-item"> <p href="">{{leAlbum.morceaux|length}} morceaux</p></li>
-                        </ul>
                         </div>
-                    </div>
                 </div>
-{% endfor %}
+            </div>
+        </div>
 </div>
+
+<table class="table table-hover mx-auto">
+  <thead>
+    <tr>
+      <th scope="col-3">Piste</th>
+      <th scope="col-5">Titre</th>
+      <th scope="col-1">Durée</th>
+      <th scope="col-3">note</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for leMorceau in leAlbum.morceaux %}
+    <tr>
+        <td>{{leMorceau.piste}}</td>
+        <td scope="row"> {{leMorceau.titre}} </td>
+        <td>{{leMorceau.duree}}</td>
+        <td> </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
