@@ -46,7 +46,7 @@
   {% for leAlbum in leArtiste.albums %}
     <tr>
         <td><img class="miniature" src="{{leAlbum.image}}" alt=""></td>
-        <td scope="row"> {{leAlbum.nom}} </td>
+        <td scope="row"> <a href="{{path('ficheAlbum', {'id': leAlbum.id})}}">{{leAlbum.nom}}</a></td>
         <td>{{leAlbum.date}}</td>
         <td> </td>
         <td>{{leAlbum.morceaux|length}}</td>
