@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Album;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,10 +40,10 @@ class AlbumRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Album[] Returns an array of Album objects
-//     */
-   public function listeAlbumsComplete(): array
+   /**
+    * @return Query Returns an array of Album objects
+    */
+   public function listeAlbumsComplete(): ?Query
    {
        return $this->createQueryBuilder('a')
            ->select('a','s','art','m')
@@ -51,7 +52,6 @@ class AlbumRepository extends ServiceEntityRepository
            ->innerJoin("a.morceaux","m")
            ->orderBy('a.id', 'ASC')
            ->getQuery()
-           ->getResult()
        ;
    }
 
