@@ -43,6 +43,7 @@ class AlbumRepository extends ServiceEntityRepository
    /**
     * @return Query Returns an array of Album objects
     */
+   
    public function listeAlbumsComplete(): ?Query
    {
        return $this->createQueryBuilder('a')
@@ -54,6 +55,11 @@ class AlbumRepository extends ServiceEntityRepository
            ->getQuery()
        ;
    }
+
+
+
+
+
 
 //    public function findOneBySomeField($value): ?Album
 //    {

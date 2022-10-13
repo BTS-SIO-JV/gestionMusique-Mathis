@@ -24,10 +24,12 @@ final class Version20221011061736 extends AbstractMigration
         $this->addSql('ALTER TABLE morceau DROP FOREIGN KEY FK_36BB72081137ABCF');
         $this->addSql('ALTER TABLE style_album DROP FOREIGN KEY FK_F34D20B8BACD6074');
         $this->addSql('ALTER TABLE style_album DROP FOREIGN KEY FK_F34D20B81137ABCF');
+
         $this->addSql('ALTER TABLE album CHANGE id id INT AUTO_INCREMENT NOT NULL');
         $this->addSql('ALTER TABLE artiste CHANGE id id INT AUTO_INCREMENT NOT NULL');
         $this->addSql('ALTER TABLE morceau CHANGE id id INT AUTO_INCREMENT NOT NULL');
         $this->addSql('ALTER TABLE style CHANGE id id INT AUTO_INCREMENT NOT NULL');
+        
         $this->addSql('ALTER TABLE album ADD CONSTRAINT FK_39986E4321D25844 FOREIGN KEY (artiste_id) REFERENCES artiste (id)');
         $this->addSql('ALTER TABLE morceau ADD CONSTRAINT FK_36BB72081137ABCF FOREIGN KEY (album_id) REFERENCES album (id)');
         $this->addSql('ALTER TABLE style_album ADD CONSTRAINT FK_F34D20B8BACD6074 FOREIGN KEY (style_id) REFERENCES style (id) ON DELETE CASCADE');
