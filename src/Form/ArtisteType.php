@@ -19,8 +19,10 @@ class ArtisteType extends AbstractType
         $builder
             ->add('nom', TextType::class, [
                 'label'=>"Nom de l'artiste",
+                'help' => "Ex : Vatiroi",
                 'attr'=>[
-                    'placeholder'=>"Saisir le nom de l'artiste, ex : Vatiroi"
+                    'placeholder'=>"Saisir le nom de l'artiste"
+
                 ]
             ])
             ->add('description', TextareaType::class)

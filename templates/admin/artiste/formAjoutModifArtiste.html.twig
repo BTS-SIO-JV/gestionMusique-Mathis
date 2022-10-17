@@ -14,7 +14,11 @@ d'un artiste</h1>
   {{form_start(formArtiste)}}
 
 
-  {{form_row(formArtiste.nom)}} {#{'label' : "Nom de l'artiste"} (pour changer le libelle #}
+  {{form_label(formArtiste.nom)}}
+  {{form_widget(formArtiste.nom)}} {#{'label' : "Nom de l'artiste"} (pour changer le libelle #}
+  {{form_help(formArtiste.nom)}}
+
+
   {{form_row(formArtiste.description)}}
   <div class="row">
     <div class="col">{{form_row(formArtiste.site)}}</div>
