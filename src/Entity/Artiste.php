@@ -11,6 +11,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ArtisteRepository::class)
+ * @UniqueEntity(
+     *      fields={"nom"},
+     *      message="Ce nom est déja utilisé"
+     * )
  */
 class Artiste
 {
@@ -24,12 +28,6 @@ class Artiste
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message= "Le nom est obligatoire !")
-     * @UniqueEntity(
-     *      fields={"nom"},
-     *      message="Ce nom est déja utilisé"
-     * 
-     * 
-     * )
      */
     private $nom;
 
@@ -37,7 +35,7 @@ class Artiste
      * @ORM\Column(type="text")
      * @Assert\Length(
      *      min=10,
-     *      max=15,
+     *      max=35,
      *      minMessage="La description doit comporter au minimum {{ limit }}",
      *      maxMessage="La description doit comporter au maximum {{ limit }}")
      */
