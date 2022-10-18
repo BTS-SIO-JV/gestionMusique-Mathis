@@ -22,7 +22,7 @@
         {% set nbAlbums = leArtiste.albums|length %}
             <tr>
             
-            <td class="col-1"><img class="avatar mx-auto d-block " style="height: auto; width : 75px; display: block;" src="{{leArtiste.image}}" alt"Card image"></td>
+            <td class="col-1"><img class="avatar mx-auto d-block " style="height: 75px; width : 75px; display: block;" src="{{leArtiste.image}}" alt"Card image"></td>
             <td class="col-2">{{leArtiste.nom}}</td>
             <td class="col-7">
                 <p class="d-flex flex-row">
@@ -36,7 +36,7 @@
             </td>
             <td class="col-2">   
               <a href=" {{path("admin_artiste_modif", {"id" : leArtiste.id})}} " class="btn btn-primary "><i class="fas fa-pen"></i></a>
-              <a type="button" class="btn btn-danger" data-toggle="modalSimple" data-target="#exampleModal"><i class="fas fa-trash"></i></a>
+              <a class="btn btn-danger" data-toggle="modal" data-target="#modalSimple" data-titre="Suppression d'un artiste" data-message="Voulez vous vraiment supprimé cet l'artiste : {{leArtiste.nom}}" data-libelleBouton ="Supprimer l'artiste" data-lien="{{path("admin_artiste_suppression", {"id" : leArtiste.id})}}"><i class="fas fa-trash"></i></a>
             </td>
             </tr>
         {% endfor %}
@@ -47,4 +47,7 @@
         {{ knp_pagination_render(lesArtistes) }}
 </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+  {% include "/include/_modale.html.twig" %}
 {% endblock %}
