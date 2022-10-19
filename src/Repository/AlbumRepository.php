@@ -44,18 +44,36 @@ class AlbumRepository extends ServiceEntityRepository
     * @return Query Returns an array of Album objects
     */
    
-   public function listeAlbumsComplete(): ?Query
-   {
-       return $this->createQueryBuilder('a')
-           ->select('a','s','art','m')
-           ->leftJoin("a.styles", 's')
-           ->innerJoin("a.artiste", 'art')
-           ->leftJoin("a.morceaux","m")
-           ->orderBy('a.id', 'ASC')
-           ->getQuery()
-       ;
-   }
+   //    /**
+//     * @return Artiste[] Returns an array of Artiste objects
+//     */
+public function listeAlbumsComplete(): array
+{
+    return $this->createQueryBuilder('alb')
+    ->select("alb","sty","mor","art")
+     ->leftJoin("alb.styles","sty")
+     ->leftJoin("alb.morceaux","mor")
+     ->leftJoin("alb.artistes","art")
+        ->orderBy('alb.nom', 'ASC')
+        ->getQuery()
+        ->getResult()
+    ;
+}
 
+ /**
+ * @return Query Returns an array of Album objects
+ */
+ public function listeAlbumsCompletePaginee(): ?Query
+ {
+     return $this->createQueryBuilder('alb')
+         ->select("alb","sty","mor","art")
+         ->leftJoin("alb.styles","sty")
+         ->leftJoin("alb.morceaux","mor")
+        ->leftJoin("alb.artistes","art")
+        ->orderBy('alb.nom', 'ASC')
+        ->getQuery()
+     ;
+ }
 
 
 
