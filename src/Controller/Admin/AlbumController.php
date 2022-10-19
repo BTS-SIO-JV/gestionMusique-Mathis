@@ -2,7 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Album;
+use App\Form\AlbumType;
 use App\Repository\AlbumRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +26,38 @@ class AlbumController extends AbstractController
         );
         return $this->render('admin/album/listeAlbums.html.twig',[
             'lesAlbums' => $albums
+        ]);
+    }
+
+    /**
+     * @Route("/admin/album/ajout", name="admin_album_ajout", methods={"GET","POST"})
+     * @Route("/admin/album/modif/{id}", name="admin_album_modif", methods={"GET","POST"})
+     */
+    public function ajoutModifAlbum(Album $album=null,Request $request, EntityManagerInterface $manager): Response
+    {
+        if($album == null)
+        {
+            $album=new Album();
+            $mode = "ajouté";
+        }
+        else
+        {
+            $mode = "modifié";
+        }
+
+        $form=$this->createForm(AlbumType::class,$album);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($album);
+            $manager->flush();
+            $this->addFlash("success","L'artiste a bien été $mode");
+            return $this->redirectToRoute('admin_albums');
+        }
+        
+        return $this->render('admin/album/formAjoutModifAlbum.html.twig',[
+            'formAlbum' => $form->createView()
         ]);
     }
 

@@ -53,7 +53,7 @@ public function listeAlbumsComplete(): array
     ->select("alb","sty","mor","art")
      ->leftJoin("alb.styles","sty")
      ->leftJoin("alb.morceaux","mor")
-     ->leftJoin("alb.artistes","art")
+     ->leftJoin("alb.artiste","art")
         ->orderBy('alb.nom', 'ASC')
         ->getQuery()
         ->getResult()
@@ -69,7 +69,7 @@ public function listeAlbumsComplete(): array
          ->select("alb","sty","mor","art")
          ->leftJoin("alb.styles","sty")
          ->leftJoin("alb.morceaux","mor")
-        ->leftJoin("alb.artistes","art")
+        ->leftJoin("alb.artiste","art")
         ->orderBy('alb.nom', 'ASC')
         ->getQuery()
      ;

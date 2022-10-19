@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AlbumController!{% endblock %}
+{% block title %}Admin albums{% endblock %}
 
 {% block body %}
 <h1 class="pt-2 text-center">Gestion des albums</h1>
-<a href=" {{path("admin_artiste_ajout")}} " class="btn btn-success">Ajouter un artiste</a>
+<a href=" {{path("admin_album_ajout")}} " class="btn btn-success">Ajouter un album</a>
 <hr>
 
 <div class="row pt-2">
@@ -29,7 +29,7 @@
                     <span class="align-self-center badge badge-success"> {{leAlbum.date}} </span>
                 </td>
                 <td class="2">
-                    {% for leArtiste in leAlbum.artistes %}{{leArtiste.nom}}{% endfor %}
+                    {{leAlbum.artiste.nom}}
                 </td>
                 <td class="col-2">
                     {% for leStyle in leAlbum.styles %}{{leStyle.nom}}{% endfor %}
@@ -37,10 +37,10 @@
                 <td class="col-2">
                     {{leAlbum.morceaux|length}}
                 </td>
-                {# <td class="col-2">   
-                <a href=" {{path("admin_artiste_modif", {"id" : leArtiste.id})}} " class="btn btn-primary "><i class="fas fa-pen"></i></a>
-                <a class="btn btn-danger" data-toggle="modal" data-target="#modalSimple" data-titre="Suppression d'un artiste" data-message="Voulez vous vraiment supprimé cet l'artiste : {{leArtiste.nom}}" data-libelleBouton ="Supprimer l'artiste" data-lien="{{path("admin_artiste_suppression", {"id" : leArtiste.id})}}"><i class="fas fa-trash"></i></a>
-                </td> #}
+                <td class="col-2">   
+                <a href=" {{path("admin_album_modif", {"id" : leAlbum.id})}} " class="btn btn-primary "><i class="fas fa-pen"></i></a>
+                <a class="btn btn-danger" data-toggle="modal" data-target="#modalSimple" data-titre="Suppression d'un artiste" data-message="Voulez vous vraiment supprimé cet l'artiste : {{leAlbum.nom}}" data-libelleBouton ="Supprimer l'artiste" data-lien="{#{{path("admin_album_suppression", {"id" : leArtiste.id})}}#}"><i class="fas fa-trash"></i></a>
+                </td> 
             </tr>
         {% endfor %}
   </tbody>
