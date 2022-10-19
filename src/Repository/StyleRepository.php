@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Style;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Style>
@@ -39,6 +40,29 @@ class StyleRepository extends ServiceEntityRepository
         }
     }
 
+    public function listeStylesComplete(): array
+   {
+       return $this->createQueryBuilder('sty')
+       ->select("sty","alb")
+        ->leftJoin("sty.albums","alb")
+           ->orderBy('sty.nom', 'ASC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+   
+    /**
+    * @return Query Returns an array of Album objects
+    */
+    public function listeStylesCompletePaginee(): ?Query
+    {
+        return $this->createQueryBuilder('sty')
+            ->select("sty","alb")
+            ->leftJoin("sty.albums","alb")
+           ->orderBy('sty.nom', 'ASC')
+           ->getQuery()
+        ;
+    }
 //    /**
 //     * @return Style[] Returns an array of Style objects
 //     */
