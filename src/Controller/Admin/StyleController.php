@@ -61,4 +61,23 @@ class StyleController extends AbstractController
             'formStyle' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/admin/style/suppression/{id}", name="admin_style_suppression", methods={"GET"})
+     */
+    public function suppressionArtiste(Style $style,EntityManagerInterface $manager): Response
+    {
+        $nbAlbums=$style->getAlbums()->count();
+        if($nbAlbums>0)
+        {
+            $this->addFlash("danger","Vous ne pouvez pas supprimé cet artiste car $nbAlbums album(s) y sont associés");
+        }else
+        {
+            $manager->remove($style);
+            $manager->flush();
+            $this->addFlash("success","Le style a bien été supprimé");
+        }
+            return $this->redirectToRoute('admin_styles');
+    }
+
 }
