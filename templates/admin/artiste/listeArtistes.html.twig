@@ -28,7 +28,7 @@
                 <p class="d-flex flex-row">
                     <span class="align-self-center badge badge-success"> {{nbAlbums}} {% if nbAlbums>1 %} albums {% else %} album {% endif %}</span>
                     <span class="align-self-center mx-3"> {% if leArtiste.type == 0 %}Artiste solo{% else %}Groupe{% endif %} </span>
-                    <span class="align-self-center ml-auto"> {{leArtiste.site}} </span>
+                    <span class="align-self-center ml-auto"> <a style="color: #223AEB;" href="{{leArtiste.site}}">Site web</a> </span>
                 </p>
                 <p>
                   {{leArtiste.description|slice(0,100)|raw}}...

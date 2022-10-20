@@ -28,9 +28,13 @@ class AlbumType extends AbstractType
             ->add('image', TextType::class)
             ->add('artiste', EntityType::class, [
                 'class' => Artiste::class,
+                'choice_label' => 'nom'
             ])
             ->add('styles', EntityType::class, [
                 'class'=> Style::class,
+                'choice_label' => 'nom',
+                'multiple' => true,
+                'by_reference' => false
             ])
         ;
     }

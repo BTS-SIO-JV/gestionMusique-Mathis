@@ -6,9 +6,16 @@ use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=AlbumRepository::class)
+ * @UniqueEntity(
+     *      fields={"nom","artiste"},
+     *      message="Ce couple nom artiste est déja utilisé")
  */
 class Album
 {
@@ -21,11 +28,24 @@ class Album
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message= "Le nom est obligatoire !",
+     *      allowNull = true)
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      min=2,
+     *      max=50,
+     *      minMessage="La description doit comporter au minimum {{ limit }}",
+     *      maxMessage="La description doit comporter au maximum {{ limit }}")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 1940,
+     *      max = 2099,
+     *      notInRangeMessage = "L'année doit être entre {{ min }} et {{ max }}")
      */
     private $date;
 
@@ -37,6 +57,7 @@ class Album
     /**
      * @ORM\ManyToOne(targetEntity=Artiste::class, inversedBy="albums")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message= "L\'artiste est obligatoire")
      */
     private $artiste;
 
@@ -47,6 +68,10 @@ class Album
 
     /**
      * @ORM\ManyToMany(targetEntity=Style::class, mappedBy="albums")
+     * @Assert\Count (
+     *      min = 1,
+     *      minMessage = "Tu dois au moins mettre un style !"
+     * )
      */
     private $styles;
 

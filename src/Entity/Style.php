@@ -32,6 +32,7 @@ class Style
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message= "Le nom est obligatoire !")
+     * @Assert\NotNull
      * @Assert\Length(
      *      min=3,
      *      max=15,

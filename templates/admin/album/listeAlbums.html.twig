@@ -32,14 +32,14 @@
                     {{leAlbum.artiste.nom}}
                 </td>
                 <td class="col-2">
-                    {% for leStyle in leAlbum.styles %}{{leStyle.nom}}{% endfor %}
+                    {% for leStyle in leAlbum.styles %}{{leStyle.nom}}<br>{% endfor %}
                 </td>
                 <td class="col-2">
                     {{leAlbum.morceaux|length}}
                 </td>
                 <td class="col-2">   
                 <a href=" {{path("admin_album_modif", {"id" : leAlbum.id})}} " class="btn btn-primary "><i class="fas fa-pen"></i></a>
-                <a class="btn btn-danger" data-toggle="modal" data-target="#modalSimple" data-titre="Suppression d'un artiste" data-message="Voulez vous vraiment supprimé cet l'artiste : {{leAlbum.nom}}" data-libelleBouton ="Supprimer l'artiste" data-lien="{#{{path("admin_album_suppression", {"id" : leArtiste.id})}}#}"><i class="fas fa-trash"></i></a>
+                <a class="btn btn-danger" data-toggle="modal" data-target="#modalSimple" data-titre="Suppression d'un artiste" data-message="Voulez vous vraiment supprimé cet l'artiste : {{leAlbum.nom}}" data-libelleBouton ="Supprimer l'artiste" data-lien="{{path("admin_album_suppression", {"id" : leAlbum.id})}}"><i class="fas fa-trash"></i></a>
                 </td> 
             </tr>
         {% endfor %}

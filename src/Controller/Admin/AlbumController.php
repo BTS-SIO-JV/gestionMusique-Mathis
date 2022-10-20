@@ -52,13 +52,24 @@ class AlbumController extends AbstractController
         {
             $manager->persist($album);
             $manager->flush();
-            $this->addFlash("success","L'artiste a bien été $mode");
+            $this->addFlash("success","L'album a bien été $mode");
             return $this->redirectToRoute('admin_albums');
         }
         
         return $this->render('admin/album/formAjoutModifAlbum.html.twig',[
             'formAlbum' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/admin/album/suppression/{id}", name="admin_album_suppression", methods={"GET"})
+     */
+    public function suppressionAlbum(Album $album,EntityManagerInterface $manager): Response
+    {
+            $manager->remove($album);
+            $manager->flush();
+            $this->addFlash("success","L'album a bien été supprimé");
+            return $this->redirectToRoute('admin_albums');
     }
 
 }
