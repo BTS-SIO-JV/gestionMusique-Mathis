@@ -34,7 +34,10 @@ class AlbumType extends AbstractType
                 'class'=> Style::class,
                 'choice_label' => 'nom',
                 'multiple' => true,
-                'by_reference' => false
+                'by_reference' => false,
+                'attr'=>[
+                    'class'=>"selectStyles"
+                ]
             ])
         ;
     }

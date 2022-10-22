@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Ajout album{% endblock %}
+{% block stylesheets %}
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
 
 {% block body %}
 <h1 class="pt-2 text-center">
@@ -43,4 +46,13 @@ d'un artiste</h1>
   
   {{form_end(formAlbum)}}
 
+{% endblock %}
+{% block javascripts %}
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+  // In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.selectStyles').select2();
+});
+  </script>
 {% endblock %}
