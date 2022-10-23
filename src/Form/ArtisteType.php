@@ -4,13 +4,14 @@ namespace App\Form;
 
 use App\Entity\Artiste;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class ArtisteType extends AbstractType
 {
@@ -25,9 +26,15 @@ class ArtisteType extends AbstractType
 
                 ]
             ])
-            ->add('description', TextareaType::class)
+            ->add('description', CKEditorType::class, [
+                "config_name"=>"config_complete"
+
+            ])
+
             ->add('site', UrlType::class)
+
             ->add('image', TextType::class)
+
             ->add('type', ChoiceType::class, [
                 "choices"=>[
                     "solo"=>0,
