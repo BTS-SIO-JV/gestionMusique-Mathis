@@ -54,13 +54,34 @@
         <a style="color: red;" href="">Register</a>
       </div>#}
 
+<ul class="navbar-nav ms-auto">
+  {% if app.user %}
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color:white">Bonjour {{ app.user.userIdentifier }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+      </li>
+  {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('app_login')}}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('app_register')}}">Register</a>
+      </li>
+  {% endif %}
 
-    {% if app.user %}
+
+</ul>
+
+
+     {# CRASH TEST QUI EST NUL MAIS A GARDER QUAND MEME ! 
+     {% if app.user %}
         <div class="login-container">
             <a style="color:#D6F188;">Hello <a style="color:#3FC115;">{{ app.user.userIdentifier }}</a></a>
         </div>
         <div>
-          <a href="">0</a> {# je sais pas comment faire d'espace entre les deux div#}
+          <a href="">0</a>  je sais pas comment faire d'espace entre les deux div 
         </div>
         <div class="login-container">
             <form action="{{ path('app_logout') }}">
@@ -79,17 +100,11 @@
             </form>
           </div>
           
-    {% endif %}
+    {% endif %} #}
 
 
 
     {# CRASH TEST LOGIN REGISTER EN HAUT A DROITE #}
-
-
-
-
-
-
 
 </nav>
         {# affiche tous les messages flash #}
