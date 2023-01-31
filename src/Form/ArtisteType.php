@@ -27,7 +27,7 @@ class ArtisteType extends AbstractType
                 ]
             ])
             ->add('description', CKEditorType::class, [
-                "config_name"=>"config_complete"
+                "config_name"=>"config_simple"
 
             ])
 
